@@ -1,6 +1,7 @@
 import unittest
 
 from datastruct.custom_queue import Queue
+from datastruct.linked_list import LinkedList, ll
 from datastruct.struct import Node, Stack
 
 
@@ -48,7 +49,6 @@ class TestQueue(unittest.TestCase):
 
 class Test_dequeue(unittest.TestCase):
     def test_dequeue_empty_queue(self):
-
         queue = Queue()
         self.assertIsNone(queue.dequeue())
 
@@ -67,3 +67,17 @@ class Test_dequeue(unittest.TestCase):
         self.assertEqual(queue.dequeue(), 3)
         self.assertEqual(queue.dequeue(), 4)
         self.assertTrue(queue.dequeue() is None)
+
+
+class Test_linkedList(unittest.TestCase):
+    def test_linkedList(self):
+        ll = LinkedList()
+        ll.insert_beginning({"id": 1})
+        ll.insert_at_end({"id": 2})
+        ll.insert_at_end({"id": 3})
+        ll.insert_beginning({"id": 0})
+
+        self.assertEqual(ll.head.data, {"id": 0})
+        self.assertEqual(ll.tail.data, {"id": 3})
+        self.assertEqual(ll.head.next_node.data, {"id": 1})
+        self.assertEqual(ll.head.next_node.next_node.data, {"id": 2})
