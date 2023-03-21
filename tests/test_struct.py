@@ -81,3 +81,34 @@ class Test_linkedList(unittest.TestCase):
         self.assertEqual(ll.tail.data, {"id": 3})
         self.assertEqual(ll.head.next_node.data, {"id": 1})
         self.assertEqual(ll.head.next_node.next_node.data, {"id": 2})
+
+
+class TestToList(unittest.TestCase):
+    def test_to_list_returns_correct_list(self):
+        ll = LinkedList()
+        ll.insert_beginning(1)
+        ll.insert_at_end(2)
+        ll.insert_beginning(3)
+        self.assertEqual(ll.to_list(), [3, 1, 2])
+
+    def test_to_list_returns_empty_list(self):
+        ll = LinkedList()
+        self.assertEqual(ll.to_list(), [])
+
+    def test_get_data_by_id_returns_correct_data(self):
+        ll = LinkedList()
+        data_1 = {'id': 1, 'name': 'Alice'}
+        data_2 = {'id': 2, 'name': 'Bob'}
+        ll.insert_beginning(data_1)
+        ll.insert_at_end(data_2)
+        self.assertEqual(ll.get_data_by_id(1), data_1)
+        self.assertEqual(ll.get_data_by_id(2), data_2)
+
+    def test_get_data_by_id(self):
+        self.assertEqual(ll.get_data_by_id(0), None)
+        ll.insert_beginning({'id': 1, 'username': 'lazzy508509'})
+        ll.insert_at_end('idusername')
+        ll.insert_at_end([1, 2, 3])
+        ll.insert_at_end({'id': 2, 'username': 'mosh_s'})
+        self.assertEqual(ll.get_data_by_id(1), {'id': 1, 'username': 'lazzy508509'})
+        self.assertEqual(ll.get_data_by_id(2), None)
